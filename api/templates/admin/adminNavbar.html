@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block styleLink %}
+
+<link rel="stylesheet" href="/static/css/navbar.css">
+
+{% endblock %}
+
+{% block content %}
+
+          <div class="navbar">
+            <a href='/admin'><h3>SB Funds (Admin)</h3></a>
+            <div class="nav-options">
+                <a href='/admin'><p >Home</p></a>
+                <a href='/allusers'><p >All users</p></a>
+                <a href='/allfundraisers'><p >Fundrisers</p></a>
+                <a href='/alldonations'><p >Donations</p></a>
+                <p id="logoutBtn" >logout</p> 
+            </div>
+          </div>
+
+          <script>
+
+            const myLink = document.getElementById('logoutBtn');
+    
+            myLink.addEventListener('click', function(event) {
+                event.preventDefault();
+    
+                localStorage.clear();
+                for (let key in localStorage) {
+                    if (localStorage.hasOwnProperty(key)) {
+                        localStorage.removeItem(key);
+                    }
+                }
+                window.location.href = '/';
+    
+            });
+        </script>
+
+        
+{% endblock %}

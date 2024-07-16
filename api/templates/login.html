@@ -8,6 +8,33 @@
 
 {% block content %}
 
+{% if isLogged %}
+    <script>
+        alert("You are already logged in successfully!!");
+        localStorage.setItem("isLogged", true);
+        localStorage.setItem("userId", "{{data.userId}}");
+        localStorage.setItem("username", "{{data.username}}");
+        localStorage.setItem("email", "{{data.email}}");
+        localStorage.setItem("usertype", "{{data.usertype}}");
+        
+        if ("{{data.usertype}}" == "admin") {
+
+            window.location.href = "/admin";
+
+        } else if ("{{data.usertype}}" == "user") {
+
+            window.location.href = "/load-home";
+
+        }
+    </script>
+{% endif %}
+
+{% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+{% endif %}
+
 <div class="AuthenticatePage">
 
     <div class="auth-navbar">
@@ -15,14 +42,15 @@
         <a href='/'><p >Home</p></a>
     </div>
 
-    <form class="authForm">
+    <form class="authForm" method="post">
+        {% csrf_token %} 
         <h2>Login</h2>
         <div class="form-floating mb-3 authFormInputs">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  />
+            {{form.email}}
             <label htmlFor="floatingInput">Email address</label>
         </div>
-            <div class="form-floating mb-3 authFormInputs">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"  /> 
+        <div class="form-floating mb-3 authFormInputs">
+            {{form.password}} 
             <label htmlFor="floatingPassword">Password</label>
         </div>
         <button type="submit" class="btn btn-primary" >Sign in</button>

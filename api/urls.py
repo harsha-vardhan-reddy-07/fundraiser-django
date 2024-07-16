@@ -5,14 +5,23 @@ urlpatterns = [
     path('', views.landing),
     path('login/', views.login),
     path('register/', views.register),
-    path('home/', views.home),
-    path('newfundraiser/', views.newFundraiser),
-    path('myfundraisers/', views.myFundraisers),
-    path('fundraiser/<int:id>/', views.fundraiser),
-    path('updatefundraiser/<int:id>/', views.updateFundraiser),
+
+    path('load-home/', views.loadHome),
+    path('home/<str:id>', views.home),
+
+    path('load-newfundraiser/', views.loadNewFundraiser),
+    path('newfundraiser/<str:id>', views.newFundraiser),
+
+    path('load-myfundraisers/', views.loadMyFundraisers),
+    path('myfundraisers/<str:id>', views.myFundraisers),
+
+    path('updatefundraiser/<str:id>/', views.updateFundraiser),
+    path('fundraiser/<str:donarId>/<str:fundId>/', views.fundraiser),
+     
     path('admin/', views.admin),
     path('allusers/', views.allUsers),
     path('allfundraisers/', views.allFundraisers),
+    path('admin-fundraiser/<str:id>/', views.adminFundraiser),
     path('alldonations/', views.allDonations),
 ]
 

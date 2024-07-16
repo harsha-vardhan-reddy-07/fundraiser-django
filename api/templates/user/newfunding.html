@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block styleLink %}
+
+<link rel="stylesheet" href="/static/css/newfunding.css">
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'user/navbar.html' %}
+
+{% if success %}
+
+<script>
+
+  alert("New Fundraiser added successfully!!")
+  window.location.href = "/load-home";
+
+</script>
+{% endif %}
+
+ <div class="new-fundriser-page">
+
+            <div class="new-fundriser-card">
+              <h3>New Fundriser Details</h3>
+            
+              <form class="new-fundriser-form" method="POST">
+
+                {% csrf_token %}
+
+                  <div class="form-floating mb-3">
+                    {{form.purpose}}
+                    <label htmlFor="new-fund-type-select">Need for Fundriser</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    {{form.applicantName}}
+                    <label htmlFor="new-fund-applicant-name">Applicant Name</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    {{form.applicantEmail}}
+                    <label htmlFor="new-fund-applicant-email">Applicant Email</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    {{form.applicantMobile}}
+                    <label htmlFor="new-fund-applicant-mobile">Applicant Mobile number</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    {{form.title}}
+                    <label htmlFor="new-fund-title">Fundriser title</label>
+                  </div>
+
+                  <span class='new-fund-span-2'>
+
+                      <div class="form-floating mb-3">
+                        {{form.targetAmount}}
+                        <label htmlFor="new-fund-applicant-name">Required amount</label>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        {{form.deadline}}
+                        <label htmlFor="new-fund-applicant-name">Deadline (dd/mm/yyyy format)</label>
+                      </div>
+
+                  </span>
+
+                  <div class="form-floating mb-3">
+                    {{form.description}}
+                    <label htmlFor="new-fund-description">Description</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                        {{form.bannerImage}}
+                        <label htmlFor="new-fund-applicant-mobile">Add Banner Image url</label>
+                  </div>
+
+                  <span class='new-fund-span-3'>
+
+                      <div class="form-floating mb-3">
+                        {{form.extraImage1}}
+                        <label htmlFor="new-fund-applicant-mobile">Add Image url</label>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        {{form.extraImage2}}
+                        <label htmlFor="new-fund-applicant-mobile">Add Image url</label>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        {{form.extraImage3}}
+                        <label htmlFor="new-fund-applicant-mobile">Add Image url</label>
+                      </div>
+                  </span>
+
+                  <span class='new-fundriser-btns' >
+                    <button type="submit" class='new-fundriser-orangeBtn'  >Sumit</button>
+                  </span>
+
+
+                </form>
+
+            </div>
+        
+
+
+    </div>
+
+
+{% endblock %}

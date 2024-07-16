@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block styleLink %}
+
+<link rel="stylesheet" href="/static/css/admin.css">
+
+{% endblock %}
+
+{% block content %}
+
+{% include "admin/adminNavbar.html" %}
+
+<div class="admin-page">
+
+    <div class="admin-cards">
+
+        <div class="admin-card">
+            <h5>All Users</h5>
+            <p>{{usersLen}}</p>
+            <a href='/allusers'><button class='btn btn-outline-primary' >View all</button></a>
+        </div>
+
+        <div class="admin-card">
+            <h5>Total donations</h5>
+            <p>{{donationsLen}}</p>
+            <a href='/alldonations'><button class='btn btn-outline-primary' >View all</button></a>
+        </div>
+
+        <div class="admin-card">
+            <h5>Total fund rised</h5>
+            <p>&#8377; {{totalDonation}}</p>
+            <a href='/allfundraisers'><button class='btn btn-outline-primary' >View all</button></a>
+        </div>
+
+        <div class="admin-card">
+            <h5>All Fundrisers</h5>
+            <p>{{fundLen}}</p>
+            <a href='/allfundraisers'><button class='btn btn-outline-primary' >View all</button></a>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

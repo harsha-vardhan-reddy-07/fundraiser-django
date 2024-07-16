@@ -8,6 +8,33 @@
 
 {% block content %}
 
+{% if isLogged %}
+    <script>
+        alert("You are already logged in successfully!!");
+        localStorage.setItem("isLogged", true);
+        localStorage.setItem("userId", "{{data.userId}}");
+        localStorage.setItem("username", "{{data.username}}");
+        localStorage.setItem("email", "{{data.email}}");
+        localStorage.setItem("usertype", "{{data.usertype}}");
+        
+        if ("{{data.usertype}}" == "admin") {
+
+            window.location.href = "/admin";
+
+        } else if ("{{data.usertype}}" == "user") {
+
+            window.location.href = "/load-home";
+
+        }
+    </script>
+{% endif %}
+
+{% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+{% endif %}
+
 <div class="AuthenticatePage">
 
     <div class="auth-navbar">
@@ -16,27 +43,24 @@
     </div>
 
 
-    <form class="authForm">
+    <form class="authForm" method="post">
+        {%csrf_token%}
         <h2>Register</h2>
         <div class="form-floating mb-3 authFormInputs">
-            <input type="text" class="form-control" id="floatingInput" placeholder="username"/>
+            {{form.username}}
             <label htmlFor="floatingInput">Username</label>
         </div>
         <div class="form-floating mb-3 authFormInputs">
-            <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com"/>
+            {{form.email}}
             <label htmlFor="floatingInput">Email address</label>
         </div>
         <div class="form-floating mb-3 authFormInputs">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"/> 
+            {{form.password}}
             <label htmlFor="floatingPassword">Password</label>
         </div>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" >
-        <option value="">User type</option>
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
-        </select>
+        {{form.usertype}}
 
-        <button class="btn btn-primary" >Sign up</button>
+        <button type="submit" class="btn btn-primary" >Sign up</button>
         <p>Already registered? <a href='/login'><span>Login</span></a></p>
     </form>
 

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block styleLink %}
+
+<link rel="stylesheet" href="/static/css/alldonations.css">
+
+{% endblock %}
+
+{% block content %}
+
+{% include "admin/adminNavbar.html"%}
+
+<div class="all-donations-page">
+    <h3>All Donations</h3>
+
+    <div class="all-donations">
+
+            {% for donation in donations %}
+     
+                    <div class="all-donation-card">
+                    <span>
+                        <b>Fundriser Type</b>
+                        <p>{{donation.fundriserPurpose}}</p>
+                    </span>
+                    <span>
+                        <b>Donor name</b>
+                        <p>{{donation.donarName}}</p>
+                    </span>
+                    <span> 
+                        <b>Donor mail</b>
+                        <p>{{donation.donarEmail}}</p>
+                    </span>
+                    <span>
+                        <b>Amount</b>
+                        <p>&#8377; {{donation.donationAmount}}</p>
+                    </span>
+                    <span>
+                        <b>Remarks</b>
+                        <p>{{donation.remark}}</p>
+                    </span>
+                    <a href="/admin-fundraiser/{{donation.fundraiserId}}"><button class='btn btn-outline-primary py-3'>View fundriser</button></a>
+                </div>
+
+            {% endfor %}
+
+            </div>
+</div>
+
+{% endblock %}

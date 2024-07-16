@@ -11,6 +11,10 @@
     z-index: 999;
 }
 
+.navbar a{
+    text-decoration: none;
+}
+
 .navbar h3{
 
     margin: 0;

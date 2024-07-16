@@ -52,6 +52,13 @@
     display: flex;
     gap: 5px;
     font-size: 0.9rem;
+    width: 100%
+}
+
+
+.fundriser-card-data span button a{
+
+    text-decoration: none !important;
 }
 
 
@@ -70,19 +77,29 @@
     margin: 0;
     color: #8c8686;
 }
-
+/* 
 .fundriser-card-data span button{
     width: 100%;
     margin: 15px 0 5px 0;
     padding: 7px 0;
     border-radius: 0.3rem;
     
+} */
+
+.fund-card-data-btns{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
 }
 
 .OrangeBtn{
     background-color: #c9ced200;
     border: 1.5px solid #ef7f5d;
     color: #ef7f5d;
+    width: 100%;
+    border-radius: 0.4rem;
+    padding: 5px 0;
+
 }
 .OrangeBtn:hover{
 
@@ -95,6 +112,9 @@
     background-color: #258abd00;
     border: 1.5px solid #1756767e;
     color: #258abddc;
+    width: 100%;
+    border-radius: 0.4rem;
+    padding: 5px 0;
 }
 .BlueBtn:hover{
 

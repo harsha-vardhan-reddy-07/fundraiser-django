@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block styleLink %}
+
+<link rel="stylesheet" href="/static/css/fundraiserdetails.css">
+
+{% endblock %}
+
+{% block content %}
+
+{% include "admin/adminNavbar.html" %}
+
+<div class="fundriser-page">
+    
+    <div class="fundriser-data-container">
+        
+        <img class='fundriser-banner-image' src="{{fundraiser.bannerImage}}" alt="" />
+        
+        <div class="fundriser-title-desc">
+            <h4>{{fundraiser.title}}</h4>
+            <p>{{fundraiser.description}}</p>
+        </div>
+
+        <div class="fundriser-applicant-data">
+            <span>
+                <b>Fundriser Need: </b>
+                <p>{{fundraiser.purpose}}</p>
+            </span>
+            <span>
+                <b>Applicant Name: </b>
+                <p>{{fundraiser.applicantName}}</p>
+            </span>
+            <span>
+                <b>Applicant Email: </b>
+                <p>{{fundraiser.applicantEmail}}</p>
+            </span>
+            <span>
+                <b>Applicant Mobile: </b>
+                <p>{{fundraiser.applicantMobile}}</p>
+            </span>
+            <span>
+                <b>Deadline: </b>
+                <p>{{fundraiser.deadline}}</p>
+            </span>
+            <div class="fundriser-amount-status">
+                <b>Amount Collected: </b>
+                <span>
+                    <p>&#8377; {{fundraiser.collectedAmount}}</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: {{fundraiser.percentage}}%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{fundraiser.percentage}}%</div>
+                    </div>
+                    <p>&#8377; {{fundraiser.targetAmount}}</p>
+                </span>
+            </div>
+            <button class='share-btn OrangeBtn' id='share_fundraiser' >Share <BiSolidShareAlt /> </button>
+        </div>
+
+        <div class="fundriser-images">
+            <img src="{{fundraiser.extraImage1}}" alt="" />
+            <img src="{{fundraiser.extraImage2}}" alt="" />
+            <img src="{{fundraiser.extraImage3}}" alt="" />
+        </div>
+
+        <hr />
+    </div>
+
+    <script>
+
+        const shareBtn = document.getElementById('share_fundraiser');
+    
+        shareBtn.addEventListener('click', function(event) {
+    
+                try {
+                    navigator.share({
+                      title: 'Share this fundriser',
+                      text: 'Contribute to the nobel cause',
+                      url: window.location.href,
+                    });
+                  } catch (error) {
+                    console.error('Error sharing:', error);
+                  }
+    
+            });
+
+    </script>
+    
+
+    <div class="fundriser-recent-transactions">
+
+        <div class="recent-donations-container">
+            <h4>Recent Donations</h4>
+            <div class="recent-donations">
+
+                        {% for donation in donations %}
+      
+                        <div class="recent-donation">
+                            <span>
+                                <b>Donor name</b>
+                                <p>{{donation.donarName}}</p>
+                            </span>
+                            <span>
+                                <b>Donor mail</b>
+                                <p>{{donation.donarEmail}}</p>
+                            </span>
+                            <span>
+                                <b>Amount</b>
+                                <p>&#8377; {{donation.donationAmount}}</p>
+                            </span>
+                            <span>
+                                <b>Remarks</b>
+                                <p>{{donation.remark}}</p>
+                            </span>
+                        </div>
+
+                        {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

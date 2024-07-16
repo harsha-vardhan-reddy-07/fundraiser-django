@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block styleLink %}
+
+<link rel="stylesheet" href="/static/css/home.css">
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'user/navbar.html'%}
+
+ <div class="homepage">
+
+      <div class="all-fundrisers">
+
+        {% for fundriser in fundraisers %}
+
+
+            <div class="fundriser-card">
+                <img src="{{fundriser.bannerImage}}" alt="" />
+                <div class="fundriser-card-data">
+                  
+                    <h5>{{fundriser.title}}</h5>
+                    <span>
+                      <b>Applicant: </b>
+                      <p>{{fundriser.applicantName}}</p>
+                    </span>
+                    <span>
+                      <b>Fundriser cause: </b>
+                      <p>{{fundriser.purpose}}</p>
+                    </span>
+                    <span>
+                      <b>Fund collected: </b>
+                      <p>&#8377; {{fundriser.collectedAmount}} / &#8377; {{fundriser.targetAmount}} </p>
+                    </span>
+                    <a href="/fundraiser/{{id}}/{{fundriser.id}}"><button class='OrangeBtn' >Donate</button></a>
+
+
+                </div>
+            </div>
+
+            {% endfor %}
+    </div>
+  </div>
+
+
+{% endblock %}
